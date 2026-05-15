@@ -16,10 +16,45 @@
         <button onclick="processLink()">loading track...</button>
     </div>
     <h2 id="displayresult"></h2>
+
+    <div id="player" style="display: none;"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
-        function processLink() {
-            alert("Button clicked")
+        let ytPlayer;
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                playerVars: {'autoplay': 1, 'controls': 0}
+            });
         }
+
+
+        function extractvideoid(url) {
+    if(!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match2 = url.match(regExp);
+    if (match2 && match2[2].length===11) {
+        return match2[2];
+    } else {
+        return null;
+    }
+}
+
+function processLink() {
+    const rawLink = document.getElementById("InputURL").value;
+    const videoid = extractvideoid(rawLink);
+    const displayArea = document.getElementById("displayresult")
+    if (videoid) {
+        displayArea.innerText = "Sucessful. Video id is" + videoid;
+
+        if (ytPlayer){
+            ytPlayer.loadVideoById(videoid)
+        }
+    } else {
+        displayArea.innerText = "Invalid Link";
+    }
+}
     </script>
 
 </body>
