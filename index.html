@@ -15,6 +15,8 @@
     border-radius: 50%;
     margin: 40px auto;
     padding: 50px;
+    background-size: cover;
+    background-position: center;
 }
 input::placeholder {
     color: white;
@@ -23,7 +25,7 @@ input::placeholder {
     </style>
 </head>
 <body>
-    <h1>CD Player</h1>
+    <h1>Spinify</h1>
     <div class="vinyl" id="vinylDisc">
     </div>
     <div>
@@ -60,7 +62,10 @@ function processLink() {
     const videoid = extractvideoid(rawLink);
     const displayArea = document.getElementById("displayresult")
     if (videoid) {
-        displayArea.innerText = "Sucessful. Video id is" + videoid;
+        displayArea.innerText = "Sucessful. Video id is: " + videoid;
+
+        const vinylCircle = document.getElementById("vinylDisc");
+        vinylCircle.style.backgroundImage = `url('https://img.youtube.com/vi/${videoid}/hqdefault.jpg')`;
 
         if (ytPlayer){
             ytPlayer.loadVideoById(videoid)
