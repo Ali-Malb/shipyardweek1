@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <title>Spinify Music Player</title>
     <style> 
-        body {background-color: black; color: #a0999994; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px;}
-        input {background-color: black; color: #ffb0b094; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px; border-radius: 15px;}
-        button {background-color: black; color: #ffaeae94; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px; border-radius: 20px;}
+        body {background-color: rgb(190, 177, 255); color: #00000094; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px;}
+        input {background-color: rgb(110, 110, 110); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px; border-radius: 15px;}
+        button {background-color: rgb(154, 154, 154); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 15px; border-radius: 20px;}
+    
+.vinyl{
+    width: 220px;
+    height: 220px;
+    background-color: rgb(45, 41, 41);
+    border-radius: 50%;
+    margin: 40px auto;
+    padding: 50px;
+}
+input::placeholder {
+    color: white;
+    opacity: 0.8; /* Optional: makes it slightly translucent so it looks premium */
+}
     </style>
 </head>
 <body>
     <h1>CD Player</h1>
+    <div class="vinyl" id="vinylDisc">
+    </div>
     <div>
         <input type="text" id="InputURL" placeholder="Please paste your youtube link here">
-        <button onclick="processLink()">loading track...</button>
+        <button onclick="processLink()">load track</button>
     </div>
     <h2 id="displayresult"></h2>
-
     <div id="player" style="display: none;"></div>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script>
